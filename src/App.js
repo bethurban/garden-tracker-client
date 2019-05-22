@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import fire from './config/fire';
 import {
   Collapse,
   Navbar,
@@ -10,13 +11,11 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem,
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input } from 'reactstrap';
-import "./App.css";
+  DropdownItem
+} from 'reactstrap';
+import './App.css';
+import Home from './Home.js';
+import Login from './Login.js';
 
 class App extends Component {
   constructor(props) {
@@ -24,9 +23,27 @@ class App extends Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false
+      isOpen: false,
+      user: null
     };
+
+    this.authListener = this.authListener.bind(this);
   }
+
+  componentDidMount() {
+    this.authListener();
+  }
+
+  authListener() {
+    fire.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ user });
+      } else {
+        this.setState({ user: null });
+      }
+    })
+  }
+
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
@@ -66,25 +83,8 @@ class App extends Component {
             </Nav>
           </Collapse>
         </Navbar>
-        <Form className="login-form">
-          <h1>Garden Tracker</h1>
-          <FormGroup>
-            <Label>Email</Label>
-            <Input type="email" placeholder="Email"/>
-          </FormGroup>
-          <FormGroup>
-            <Label>Password</Label>
-            <Input type="password" placeholder="Password"/>
-          </FormGroup>
-          <Button className="btn-lg btn-dark btn-block">Log in</Button>
-          <div className="text-center">
-            <a href="/sign-up">Sign up</a>
-            <span className="p-2">|</span>
-            <a href="/forgot-password">Forgot password</a>
-          </div>
-        </Form>
+        {this.state.user ? (<Home />) : (<Login />)}
       </div>
-
     );
   }
 
