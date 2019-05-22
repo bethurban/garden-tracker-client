@@ -17,7 +17,7 @@ class Login extends Component {
 
     fire.auth().signInWithEmailAndPassword(email, password)
       .then((u) => {
-        console.log("Successful login");
+        console.log("Successful login: " + u.user.email);
       })
       .catch((err) => {
         console.log("Error: " + err.toString());
@@ -30,7 +30,7 @@ class Login extends Component {
 
     fire.auth().createUserWithEmailAndPassword(email, password)
       .then((u) => {
-        console.log("Successful signup");
+        console.log("Successful signup: " + u.user.email);
       })
       .catch((err) => {
         console.log("Error: " + err.toString());

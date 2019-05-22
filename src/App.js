@@ -3,7 +3,9 @@ import fire from './config/fire';
 import './App.css';
 import Home from './containers/Home.js';
 import Login from './containers/Login.js';
-import Navigation from './containers/Navigation.js'
+import { checkUser, createUser } from './actions/login.js';
+import { connect } from 'react-redux';
+
 
 class App extends Component {
   constructor(props) {
@@ -24,6 +26,7 @@ class App extends Component {
     fire.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({ user });
+        this.props.checkUser(user.email)
       } else {
         this.setState({ user: null });
       }
@@ -33,7 +36,6 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Navigation />
         {this.state.user ? (<Home />) : (<Login />)}
       </div>
     );
@@ -41,4 +43,10 @@ class App extends Component {
 
 }
 
-export default App;
+const mapStateToProps = state => {
+  return({
+    user: state.users.user
+  })
+}
+
+export default connect(mapStateToProps, { checkUser, createUser })(App);
