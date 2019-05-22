@@ -1,7 +1,7 @@
 import firebase from 'firebase';
 
 var firebaseConfig = {
-    apiKey: "AIzaSyDHBMSNYT9lbbtoXBfe6u0z_y5jLgH0kB8",
+    apiKey: process.env.REACT_APP_FIREBASE_API,
     authDomain: "garden-tracker-a4687.firebaseapp.com",
     databaseURL: "https://garden-tracker-a4687.firebaseio.com",
     projectId: "garden-tracker-a4687",
