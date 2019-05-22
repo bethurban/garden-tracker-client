@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import fire from './config/fire';
+import fire from '../config/fire';
 import { Button } from 'reactstrap';
-import "./App.css";
+import '../App.css';
 
 class Home extends Component {
 

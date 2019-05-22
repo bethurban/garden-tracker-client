@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import fire from './config/fire';
+import fire from '../config/fire';
 import {
   Button,
   Form,
@@ -7,7 +7,7 @@ import {
   Label,
   Input
 } from 'reactstrap';
-import "./App.css";
+import './Login.css';
 
 class Login extends Component {
 
