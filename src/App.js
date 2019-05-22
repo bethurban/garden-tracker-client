@@ -10,7 +10,12 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  DropdownItem,
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input } from 'reactstrap';
 import "./App.css";
 
 class App extends Component {
@@ -61,7 +66,25 @@ class App extends Component {
             </Nav>
           </Collapse>
         </Navbar>
+        <Form className="login-form">
+          <h1>Garden Tracker</h1>
+          <FormGroup>
+            <Label>Email</Label>
+            <Input type="email" placeholder="Email"/>
+          </FormGroup>
+          <FormGroup>
+            <Label>Password</Label>
+            <Input type="password" placeholder="Password"/>
+          </FormGroup>
+          <Button className="btn-lg btn-dark btn-block">Log in</Button>
+          <div className="text-center">
+            <a href="/sign-up">Sign up</a>
+            <span className="p-2">|</span>
+            <a href="/forgot-password">Forgot password</a>
+          </div>
+        </Form>
       </div>
+
     );
   }
 
