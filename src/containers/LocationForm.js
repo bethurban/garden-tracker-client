@@ -9,7 +9,7 @@ import {
   Input
 } from 'reactstrap';
 import { connect } from 'react-redux';
-import { updateLocationFormData, createLocation } from '../actions/location.js';
+import { createLocation } from '../actions/location.js';
 
 class LocationForm extends Component {
 
@@ -32,7 +32,6 @@ class LocationForm extends Component {
   }
 
   handleOnSubmit = event => {
-    console.log("submitting form")
     this.setState(prevState => ({
       modal: !prevState.modal
     }));
@@ -67,4 +66,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect (mapStateToProps, { updateLocationFormData, createLocation })(LocationForm);
+export default connect (mapStateToProps, { createLocation })(LocationForm);

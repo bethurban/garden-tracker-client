@@ -1,12 +1,5 @@
 const API_URL = process.env.REACT_APP_API_URL;
 
-export const updateLocationFormData = locationFormData => {
-  return {
-    type: 'UPDATED_DATA',
-    locationFormData
-  }
-}
-
 const addLocation = location => {
   return {
     type: 'CREATE_LOCATION_SUCCESS',

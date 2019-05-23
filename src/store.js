@@ -6,12 +6,10 @@ import {
 } from 'redux';
 import thunk from 'redux-thunk';
 import users from './reducers/users.js';
-import locationForm from './reducers/locationForm.js'
-import locations from './reducers/locations.js'
+import locations from './reducers/locations.js';
 
 const reducers = combineReducers({
   users,
-  locationForm,
   locations
 });
 
