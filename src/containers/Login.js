@@ -43,11 +43,11 @@ class Login extends Component {
         <h1>Garden Tracker</h1>
         <FormGroup>
           <Label>Email</Label>
-          <Input id="email" placeholder="Email"/>
+          <Input id="email" placeholder="email@domain.com" type="email" />
         </FormGroup>
         <FormGroup>
           <Label>Password</Label>
-          <Input id="password" placeholder="Password"/>
+          <Input id="password" placeholder="At least six characters" type="password" />
         </FormGroup>
         <Button className="btn-lg btn-dark btn-block" onClick={this.logIn}>Log in</Button>
         <div className="text-center">
