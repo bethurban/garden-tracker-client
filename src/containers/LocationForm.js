@@ -2,73 +2,58 @@ import React, { Component } from 'react';
 import {
   Button,
   Modal,
-  ModalHeader,
   ModalBody,
   ModalFooter,
   Form,
   FormGroup,
-  Label,
-  Input,
-  FormText
+  Input
 } from 'reactstrap';
 import { connect } from 'react-redux';
+import { updateLocationFormData, createLocation } from '../actions/location.js';
 
 class LocationForm extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      modal: false
+      modal: false,
+      locationName: ""
     };
-
-    this.toggle = this.toggle.bind(this);
   }
 
-  toggle() {
+  toggle = () => {
     this.setState(prevState => ({
       modal: !prevState.modal
     }));
   }
 
+  handleOnChange = event => {
+    this.setState({locationName: event.target.value})
+  }
+
+  handleOnSubmit = event => {
+    console.log("submitting form")
+    this.setState(prevState => ({
+      modal: !prevState.modal
+    }));
+    this.props.createLocation(this.state.locationName, this.props.user)
+  }
+
   render() {
+    const name = this.props.locationFormData;
     return (
       <div>
         <Button color="success" onClick={this.toggle}>Add a new garden bed</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalBody>
-
             <Form>
               <FormGroup>
-                <Label for="exampleEmail">Email</Label>
-                <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
-              </FormGroup>
-              <FormGroup>
-                <Label for="examplePassword">Password</Label>
-                <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" />
-              </FormGroup>
-              <FormGroup>
-                <Label for="exampleSelect">Select</Label>
-                <Input type="select" name="select" id="exampleSelect">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </Input>
-              </FormGroup>
-              <FormGroup>
-                <Label for="exampleFile">File</Label>
-                <Input type="file" name="file" id="exampleFile" />
-                <FormText color="muted">
-                  This is some placeholder block-level help text for the above input.
-                  It's a bit lighter and easily wraps to a new line.
-                </FormText>
+                <Input type="text" name="name" value={name} id="name" placeholder="Name this garden bed" onChange={this.handleOnChange} />
               </FormGroup>
             </Form>
-
           </ModalBody>
           <ModalFooter>
-            <Button color="success" onClick={this.toggle}>Add garden bed</Button>{' '}
+            <Button color="success" onClick={this.handleOnSubmit}>Submit</Button>{' '}
             <Button color="secondary" onClick={this.toggle}>Cancel</Button>
           </ModalFooter>
         </Modal>
@@ -76,4 +61,10 @@ class LocationForm extends Component {
     )}
 }
 
-export default LocationForm;
+const mapStateToProps = state => {
+  return {
+    user: state.users.user.id
+  }
+}
+
+export default connect (mapStateToProps, { updateLocationFormData, createLocation })(LocationForm);

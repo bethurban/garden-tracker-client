@@ -1,17 +1,6 @@
 import React, { Component } from 'react';
 import fire from '../config/fire';
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  FormText
-} from 'reactstrap';
+import { Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import '../App.css';
 import LocationForm from './LocationForm'

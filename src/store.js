@@ -6,9 +6,13 @@ import {
 } from 'redux';
 import thunk from 'redux-thunk';
 import users from './reducers/users.js';
+import locationForm from './reducers/locationForm.js'
+import locations from './reducers/locations.js'
 
 const reducers = combineReducers({
-  users
+  users,
+  locationForm,
+  locations
 });
 
 const middleware = [thunk];
