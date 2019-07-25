@@ -1,5 +1,7 @@
 # TO DO:
 
+** Has many through? User has many plants through locations??
+
 1. Create LocationCard component.
 2. Add conditional to Home container - if user has locations, LocationCards are displayed.
 3. Add 'notes' to locations table in API, permit notes in LocationsController.
